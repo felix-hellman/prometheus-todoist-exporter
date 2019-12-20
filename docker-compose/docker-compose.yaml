@@ -10,6 +10,7 @@ services:
                 image: "todoist-prometheus-exporter"
                 volumes: 
                 - "/home/hell/prometheus-todoist-exporter/.state:/.state"
+                - "/home/hell/prometheus-todoist-exporter/.credentials:/.credentials"
         grafana:
                 image: "grafana/grafana"
                 ports:

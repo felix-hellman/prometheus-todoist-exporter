@@ -10,7 +10,6 @@ echo "{}" > .state
 To run docker-compose example with prometheus + grafana
 Change your volume paths for prometheus.yml and exporter state
 ```bash
-Docker build -t prometheus-todoist-exporter .
 cd docker-compose
 docker compose up -d
 ``` 

@@ -7,9 +7,10 @@ services:
                 volumes: 
                 - "/home/hell/prometheus-todoist-exporter/docker-compose/prometheus.yml:/etc/prometheus/prometheus.yml"
         prometheus-todoist-exporter:
-                image: "todoist-prometheus-exporter"
+                image: "kaisha/todoist-prometheus-exporter"
                 volumes: 
                 - "/home/hell/prometheus-todoist-exporter/.state:/.state"
+                - "/home/hell/prometheus-todoist-exporter/.credentials:/.credentials"
         grafana:
                 image: "grafana/grafana"
                 ports:

@@ -3,7 +3,6 @@ from datetime import date
 from datetime import datetime
 import json
 import os.path
-import cred
 from prometheus_client import start_http_server, Counter
 import time
 
@@ -26,6 +25,16 @@ def load():
         completed_today = list(filter(lambda x: is_today(x['completed']), state))
         return completed_today
     return []
+
+
+def load_credentials():
+    try:
+        with open('.credentials', 'r') as f:
+            api_key = f.read()
+            f.close()
+            return api_key
+    except FileNotFoundError as fnf_error:
+        print(fnf_error)
 
 
 def report_completed(completed_tasks, reported, counter):
@@ -56,7 +65,7 @@ def report_completed_tasks(api, prometheus_counter):
 
 
 if __name__ == '__main__':
-    api = todoist.TodoistAPI(cred.key)
+    api = todoist.TodoistAPI(load_credentials())
     start_http_server(8000)
     c = Counter('todoist_recurring_completed', 'Counter of todoist recurring tasks', ['task_name'])
     print("Exporter started!")
